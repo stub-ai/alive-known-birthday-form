@@ -1,10 +1,12 @@
 import React, { useState, FormEvent } from 'react';
+import { useSubmissions } from '../context/SubmissionsContext';
 
 const BirthdayForm = () => {
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
   const [message, setMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const { addSubmission } = useSubmissions();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ const BirthdayForm = () => {
     if (response.ok) {
       setMessage(`Thank you ${name}`);
       setFormSubmitted(true);
+      addSubmission({ name, dob });
     }
   };
 

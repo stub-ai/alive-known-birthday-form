@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSubmissions } from '../context/SubmissionsContext';
 
 type Submission = {
   name: string;
@@ -6,13 +7,7 @@ type Submission = {
 };
 
 const SubmissionsList = () => {
-  const [submissions, setSubmissions] = useState<Submission[]>([]);
-
-  useEffect(() => {
-    fetch('/api/submissions')
-      .then((response) => response.json())
-      .then((data) => setSubmissions(data));
-  }, []);
+  const { submissions } = useSubmissions();
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-md mx-auto mt-5">
