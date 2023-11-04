@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
@@ -6,11 +5,13 @@ type Data = {
   dob: string
 }
 
+export let submissions: Data[] = [];
+
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   const { name, dob } = req.body;
-  // Here you can add your logic to save the data in your database
+  submissions.push({ name, dob });
   res.status(200).json({ name, dob });
 }
