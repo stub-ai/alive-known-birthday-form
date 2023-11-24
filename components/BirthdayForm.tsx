@@ -3,6 +3,7 @@ import { useSubmissions } from '../context/SubmissionsContext';
 
 const BirthdayForm = () => {
   const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
   const [dob, setDob] = useState('');
   const [message, setMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -15,13 +16,13 @@ const BirthdayForm = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, dob }),
+      body: JSON.stringify({ name, surname, dob }),
     });
 
     if (response.ok) {
-      setMessage(`Thank you ${name}`);
+      setMessage(`Thank you ${name} ${surname}`);
       setFormSubmitted(true);
-      addSubmission({ name, dob });
+      addSubmission({ name, surname, dob });
     }
   };
 
@@ -36,6 +37,10 @@ const BirthdayForm = () => {
             <div className="flex flex-col mb-4">
               <label className="text-gray-700 dark:text-gray-200">Name</label>
               <input className="mt-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-md px-3 py-2" type="text" placeholder="Enter your name" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label className="text-gray-700 dark:text-gray-200">Surname</label>
+              <input className="mt-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-md px-3 py-2" type="text" placeholder="Enter your surname" value={surname} onChange={(e) => setSurname(e.target.value)} />
             </div>
             <div className="flex flex-col mb-4">
               <label className="text-gray-700 dark:text-gray-200">Date of Birth</label>

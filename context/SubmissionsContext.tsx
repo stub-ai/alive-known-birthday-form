@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Submission = {
   name: string;
+  surname: string;
   dob: string;
 };
 

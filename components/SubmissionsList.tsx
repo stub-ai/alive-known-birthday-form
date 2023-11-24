@@ -3,6 +3,7 @@ import { useSubmissions } from '../context/SubmissionsContext';
 
 type Submission = {
   name: string;
+  surname: string;
   dob: string;
 };
 
@@ -19,6 +20,7 @@ const SubmissionsList = () => {
           <thead className="bg-gray-200">
             <tr>
               <th className="px-4 py-2">Name</th>
+              <th className="px-4 py-2">Surname</th>
               <th className="px-4 py-2">Date of Birth</th>
             </tr>
           </thead>
@@ -26,6 +28,7 @@ const SubmissionsList = () => {
             {submissions.map((submission, index) => (
               <tr className={index % 2 === 0 ? 'bg-gray-100' : ''} key={index}>
                 <td className="px-4 py-2">{submission.name}</td>
+                <td className="px-4 py-2">{submission.surname}</td>
                 <td className="px-4 py-2">{submission.dob}</td>
               </tr>
             ))}
